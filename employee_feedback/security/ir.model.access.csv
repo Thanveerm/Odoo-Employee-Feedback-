@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+create_employee_feedback,create.employee.feedback,employee_feedback.model_employee_feedback,,1,1,1,1
+
+create_employee_type,create.employee.type,employee_feedback.model_employee_type,,1,1,1,1
+
+
+
+
+
+
+
+

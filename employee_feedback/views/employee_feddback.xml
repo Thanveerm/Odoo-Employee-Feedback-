@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="create_employee_type_view" model="ir.ui.view">
+            <field name="name">View.employee.create.type.tree.view</field>
+            <field name="model">employee.type</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+
+    <data>
+        <record id="view_employee_type_form_view" model="ir.ui.view">
+            <field name="name">view.employee.type.form.view</field>
+            <field name="model">employee.type</field>
+            <field name="arch" type="xml">
+                <form string="Employee Type">
+                    <heder>
+                        <button name="action_button" type="object" string="Button"/>
+                    </heder>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="last_week"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+    <data>
+        <record id="create_employee_feedback_view" model="ir.ui.view">
+            <field name="name">View.employee.feedback.tree.view</field>
+            <field name="model">employee.feedback</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Type">
+                    <field name="type"/>
+                    <field name="created_by"/>
+                    <field name="date"/>
+                    <field name="feedback_to"/>
+                    <field name="state" decoration-success="state=='sent'" decoration-danger="state=='draft'"
+                           widget="badge"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+
+
+    <data>
+        <record id="view_employee_feedback_form_view" model="ir.ui.view">
+            <field name="name">view.employee.feedback.form.view</field>
+            <field name="model">employee.feedback</field>
+            <field name="arch" type="xml">
+                <form string="Employee Feedback">
+                    <header>
+                        <button name="action_done" type="object" class="oe_highlight" string="Done"
+                                groups="employee_feedback.group_user_Hr"/>
+                        <button name="action_cancel" type="object" class="oe_highlight" string="Cancel"
+                                groups="employee_feedback.group_user_Hr"/>
+                        <button id="action" type="action" name="%(action_mail_employee_feedback)d"
+                                string="Send by Email" groups="employee_feedback.group_user_Hr"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="type"/>
+                                <field name="created_by"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="feedback_to"/>
+                            </group>
+                        </group>
+                        <group>
+
+                        </group>
+                        <group>
+
+                        </group>
+                        <group>
+                        </group>
+                        <group>
+
+                        </group>
+                        <h4>Feedback</h4>
+                        <field name="comment"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+
+
+    <!-- Define the action -->
+    <record id="action_employee_type_link" model="ir.actions.act_window">
+        <field name="name">Create Employee Type</field>
+        <field name="res_model">employee.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_employee_feedback_link" model="ir.actions.act_window">
+        <field name="name">Create Employee Feedback</field>
+        <field name="res_model">employee.feedback</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+    <!-- Define the menu item -->
+    <menuitem id="create_employee_feedback_type_menu"
+              name="Employee Feedback"
+              sequence="1"/>
+
+    <menuitem id="create_employee_type_menu"
+              name="Feedback Type"
+              action="action_employee_type_link"
+              parent="create_employee_feedback_type_menu"
+              sequence="1"
+              groups="employee_feedback.group_user_Hr"/>
+    <menuitem id="create_employee_feedback_menu"
+              name="Employee Feedback"
+              action="action_employee_feedback_link"
+              parent="create_employee_feedback_type_menu"
+              sequence="2"/>
+
+    <menuitem
+            id="stock_items_codilar"
+            name="welcome kit item"
+            parent="create_employee_feedback_type_menu"
+            sequence="11"/>
+
+</odoo>

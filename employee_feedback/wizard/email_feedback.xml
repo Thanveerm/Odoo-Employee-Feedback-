@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_mail_employee_feedback" model="ir.actions.act_window">
+        <field name="name">send a mail</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mail.compose.message</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" eval="False"/>
+    </record>
+</odoo>
